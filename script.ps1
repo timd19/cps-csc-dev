@@ -6,3 +6,5 @@ $var - Get-V[Diagnostics.CodeAnalysis.SuppressMessageAttribute(
 Get-SomethingElse -Dont -Know
 
 ## GET Updates
+
+Show-AnotherUpdate

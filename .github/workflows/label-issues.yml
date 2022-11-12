@@ -1,13 +1,4 @@
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
-
-# GitHub recommends pinning actions to a commit SHA.
-# To get a newer version, you will need to update the SHA.
-# You can also reference a tag or branch, but the action may change without warning.
-
-name: Label issues
+name: Label Enhancements
 on:
   issues:
     types:
@@ -19,8 +10,16 @@ jobs:
     permissions:
       issues: write
     steps:
+      - uses: actions/checkout@v3
+      - name: new var
+        id: Test
+        run: |
+          $random = Get-Random
+          Write-Host $("ENCH"+$random)
+          echo "SN_ENHANCEMENT=$("ENCH"+$random)" >> $env:GITHUB_ENV
+        shell: pwsh
       - name: Label issues
         uses: andymckay/labeler@e6c4322d0397f3240f0e7e30a33b5c5df2d39e90
         with:
-          add-labels: "cloud platforms"
+          add-labels: "${{ env.SN_ENHANCEMENT }}"
           repo-token: ${{ secrets.GITHUB_TOKEN }}

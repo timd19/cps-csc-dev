@@ -16,9 +16,8 @@ jobs:
         if: contains(github.event.issue.labels.*.name, 'enhancement')
         run: |
           $random = Get-Random
-          $env:GITHUB_EVENT | ConvertTo-Json -Depth 20
-          ${{ github.event }}
-          Write-Host $events
+          try { Get-Content $env:GITHUB_EVENT | ConvertTo-Json -Depth 20 } catch {}
+          try { Get-Content ${{ github.event }} } catch {}
           Write-Host $("ENCH"+$random)
           echo "SN_ENHANCEMENT=$("ENCH"+$random)" >> $env:GITHUB_ENV
         shell: pwsh

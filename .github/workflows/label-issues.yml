@@ -14,7 +14,6 @@ jobs:
           id: cServiceNowEnhancement
           run: |
             $random = Get-Random
-            echo "GENERATOR_PLATFORM=$random" >> $env:GITHUB_ENV
             Write-Host $("ENCH"+$random)
           shell: pwsh
   label_issues:
@@ -26,7 +25,7 @@ jobs:
       - uses: actions/checkout@v1
       - name: new var
         id: Test
-        run: Write-Host $env:GENERATOR_PLATFORM
+        run: echo "GENERATOR_PLATFORM=12345" >> $env:GITHUB_ENV
         shell: pwsh
       - name: Label issues
         uses: andymckay/labeler@e6c4322d0397f3240f0e7e30a33b5c5df2d39e90

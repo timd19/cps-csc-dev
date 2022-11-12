@@ -32,8 +32,13 @@ jobs:
     permissions:
       issues: write
     steps:
+      - uses: actions/checkout@v1
+      - name: new var
+        id: Test
+        run: Write-Host $env:TEST
+        shell: pwsh
       - name: Label issues
         uses: andymckay/labeler@e6c4322d0397f3240f0e7e30a33b5c5df2d39e90
         with:
-          add-labels: ${{ env.VAR }}
+          add-labels: "${{ env.VAR }}"
           repo-token: ${{ secrets.GITHUB_TOKEN }}

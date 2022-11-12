@@ -13,7 +13,7 @@ jobs:
       - uses: actions/checkout@v3
       - name: Create ServiceNow Enhancement
         id: cServiceNowEnhancement
-        if: contains(github.event.issue.title, '[ENHANCEMENT]')
+        if: contains(github.event.issue.title, '[ENHANCEMENT]') && !contains(github.event.issue.lables.*.name, 'ENCH') 
         run: |
           $random = Get-Random -Maximum 9999 -Minimum 1000
           $github = Get-Content '${{ github.event_path }}' | ConvertFrom-Json

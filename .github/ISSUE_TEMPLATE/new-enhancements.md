@@ -1,8 +1,8 @@
 ---
-name: Feature request
-about: Suggest an idea for this project
-title: "[FEATURE]"
-labels: enhancement, triage
+name: New Enhancements
+about: Request a new enhancement for this service.
+title: "[ENHANCEMENT]"
+labels: enhancement
 assignees: ''
 
 ---

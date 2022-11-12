@@ -23,7 +23,7 @@ jobs:
           id: cServiceNowEnhancement
           run: |
             $random = Get-Random
-            echo "::set-output name=number::$("ENCH"+$random)"
+            "VAR=TEST" >> $env:GITHUB_ENV
             Write-Host $("ENCH"+$random)
           shell: pwsh
   label_issues:
@@ -35,5 +35,5 @@ jobs:
       - name: Label issues
         uses: andymckay/labeler@e6c4322d0397f3240f0e7e30a33b5c5df2d39e90
         with:
-          add-labels: ${{ steps.cServiceNowEnhancement.outputs.number }}
+          add-labels: ${{ env.VAR }}
           repo-token: ${{ secrets.GITHUB_TOKEN }}

@@ -5,30 +5,21 @@ on:
       - reopened
       - opened
 jobs:
-  create-servicenow-enchancement:
-      name: Run Script
-      runs-on: ubuntu-latest
-      steps:
-        - uses: actions/checkout@v1
-        - name: Create a ServiceNow Enhancement
-          id: cServiceNowEnhancement
-          run: |
-            $random = Get-Random
-            Write-Host $("ENCH"+$random)
-          shell: pwsh
   label_issues:
     runs-on: ubuntu-latest
-    needs: create-servicenow-enchancement
     permissions:
       issues: write
     steps:
       - uses: actions/checkout@v1
       - name: new var
         id: Test
-        run: echo "GENERATOR_PLATFORM=12345" >> $env:GITHUB_ENV
+        run: |
+          $random = Get-Random
+          Write-Host $("ENCH"+$random)
+          echo "SN_ENHANCEMENT=$("ENCH"+$random)" >> $env:GITHUB_ENV
         shell: pwsh
       - name: Label issues
         uses: andymckay/labeler@e6c4322d0397f3240f0e7e30a33b5c5df2d39e90
         with:
-          add-labels: "${{ env.GENERATOR_PLATFORM }}"
+          add-labels: "${{ env.SN_ENHANCEMENT }}"
           repo-token: ${{ secrets.GITHUB_TOKEN }}

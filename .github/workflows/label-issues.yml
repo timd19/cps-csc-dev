@@ -7,28 +7,33 @@
 # To get a newer version, you will need to update the SHA.
 # You can also reference a tag or branch, but the action may change without warning.
 
-name: Label issues
+name: Label Enhancements
 on:
   issues:
     types:
       - reopened
       - opened
 jobs:
-  build:
+  create-servicenow-enchancement:
       name: Run Script
       runs-on: ubuntu-latest
       steps:
         - uses: actions/checkout@v1
-        - name: Script
-          run: Write-Host 'Hello, World'
+        - name: Create a ServiceNow Enhancement
+          id: cServiceNowEnhancement
+          run: |
+            $random = Get-Random
+            echo "::set-output name=number::$("ENCH"+$random)"
+            Write-Host $("ENCH"+$random)
           shell: pwsh
   label_issues:
     runs-on: ubuntu-latest
+    needs: create-servicenow-enchancement
     permissions:
       issues: write
     steps:
       - name: Label issues
         uses: andymckay/labeler@e6c4322d0397f3240f0e7e30a33b5c5df2d39e90
         with:
-          add-labels: "cloud platforms"
+          add-labels: "${{ steps.cServiceNowEnhancement.outputs.number }}"
           repo-token: ${{ secrets.GITHUB_TOKEN }}

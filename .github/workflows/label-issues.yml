@@ -16,7 +16,7 @@ jobs:
         if: >-
           contains(github.event.issue.title, '[ENHANCEMENT]') && 
           (
-            !contains(github.event.issue.labels.*.name, 'ENCH')
+            !contains(github.event.pull_request.labels.*.name, '0 ENCH')
           )
         run: |
           $random = Get-Random -Maximum 9999 -Minimum 1000

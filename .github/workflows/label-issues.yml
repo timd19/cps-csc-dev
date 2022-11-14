@@ -15,7 +15,7 @@ jobs:
         id: cServiceNowEnhancement
         if: |
           contains(github.event.issue.title, '[ENHANCEMENT]') 
-            && !contains(github.event.issue.labels.*.name, 'bug')
+            && !contains(github.event.issue.labels.*.name, 'ENCH')
         run: |
           $random = Get-Random -Maximum 9999 -Minimum 1000
           $github = Get-Content '${{ github.event_path }}' | ConvertFrom-Json

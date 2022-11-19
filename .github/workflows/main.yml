@@ -9,10 +9,6 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v3.1.0
-        with:
-          #ref: in-client-svof
-          ref: release-experiments
-          fetch-depth: 0
       
       - name: Build Changelog
         id: github_release

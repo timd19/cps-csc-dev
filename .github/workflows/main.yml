@@ -13,6 +13,10 @@ jobs:
       - name: Build Changelog
         id: github_release
         uses: mikepenz/release-changelog-builder-action@v3.4.0
+        with:
+          configuration: "release-changelog-configuration.json"
+          ignorePreReleases: "false"
+          toTag: "51"
           
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

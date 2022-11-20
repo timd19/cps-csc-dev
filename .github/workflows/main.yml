@@ -16,7 +16,7 @@ jobs:
           configuration: "release-changelog-configuration.json"
           ignorePreReleases: "false"
         env:
-          toTag: ${{ github.sha }}
+          toTag: v4.0
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Create Release

@@ -63,3 +63,4 @@ resource "azurerm_storage_blob" "a_file" {
   storage_container_name = azurerm_storage_container.storage.name
   type                   = "Block"
   source_content         = "Hello, Blob!"
+}

@@ -1,5 +1,5 @@
 provider "azuread" {
-  version = "=0.7.0"
+  version = "=2.31.0"
 }
 
 provider "random" {

@@ -1,4 +1,4 @@
-variable "dfs87yfdhd8" {
+variable "name_prefix" {
   type        = string
   description = "Prefix of the resource name"
 }

@@ -17,15 +17,16 @@ env:
  # verbosity setting for Terraform logs
  TF_LOG: INFO
  # Credentials for deployment to AWS
- AZURE_CLIENT_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
- AZURE_CLIENT_SECRET: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
- # S3 bucket for the Terraform state
- BUCKET_TF_STATE: ${{ secrets.BUCKET_TF_STATE}}
+ ARM_CLIENT_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+ ARM_CLIENT_SECRET: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+ ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID}}
+ ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID}}
  
 jobs:
  terraform:
    name: "Terraform Infrastructure Change Management"
    runs-on: ubuntu-latest
+   environment: development
    defaults:
      run:
        shell: bash
@@ -54,7 +55,7 @@ jobs:
      - name: Terraform plan
        id: plan
        if: github.event_name == 'pull_request'
-       run: terraform plan -no-color -var="name_prefix=6s876dsyhdf"
+       run: terraform plan -no-color -var="name_prefix=6s876dsyhdf" -var="subscription_id=${{ secrets.AZURE_SUBSCRIPTION_ID }}" -var="tenant_id=t2.micro" -var="instance_type=${{ secrets.AZURE_TENANT_ID }}" -var="client_id=${{ secrets.AZURE_CLIENT_ID }}" -var="client_secret=${{ secrets.AZURE_CLIENT_SECRET }}"
        continue-on-error: true
     
      - uses: actions/github-script@v6

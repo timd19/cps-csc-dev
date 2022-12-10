@@ -18,7 +18,7 @@ resource "azurerm_service_plan" "default" {
   location            = azurerm_resource_group.default.location
   resource_group_name = azurerm_resource_group.default.name
   sku_name            = "Y1"
-  os_type             = "Linux"
+  os_type             = "Windows"
 
 }
 # please note
@@ -40,7 +40,7 @@ resource "azurerm_linux_function_app" "test" {
 
   site_config {
     application_stack {
-      dotnet_version = "6.0"
+      powershell_core_version = "7.2"
     }
   }
 }

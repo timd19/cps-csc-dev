@@ -55,7 +55,7 @@ jobs:
      - name: Terraform plan
        id: plan
        if: github.event_name == 'pull_request'
-       run: terraform plan -no-color -var="name_prefix=6s876dsyhdf" -var="subscription_id=${{ secrets.AZURE_SUBSCRIPTION_ID }}" -var="tenant_id=t2.micro" -var="instance_type=${{ secrets.AZURE_TENANT_ID }}" -var="client_id=${{ secrets.AZURE_CLIENT_ID }}" -var="client_secret=${{ secrets.AZURE_CLIENT_SECRET }}"
+       run: terraform plan -no-color -var="name_prefix=6s876dsyhdf" -var="subscription_id=${{ secrets.AZURE_SUBSCRIPTION_ID }}" -var="tenant_id=${{ secrets.AZURE_TENANT_ID }}" -var="client_id=${{ secrets.AZURE_CLIENT_ID }}" -var="client_secret=${{ secrets.AZURE_CLIENT_SECRET }}"
        continue-on-error: true
     
      - uses: actions/github-script@v6
@@ -121,4 +121,4 @@ jobs:
  
      - name: Terraform Apply
        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-       run: terraform apply -auto-approve -var="name_prefix=6s876dsyhdf" -var="subscription_id=${{ secrets.AZURE_SUBSCRIPTION_ID }}" -var="tenant_id=t2.micro" -var="instance_type=${{ secrets.AZURE_TENANT_ID }}" -var="client_id=${{ secrets.AZURE_CLIENT_ID }}" -var="client_secret=${{ secrets.AZURE_CLIENT_SECRET }}"
+       run: terraform apply -auto-approve -var="name_prefix=6s876dsyhdf" -var="subscription_id=${{ secrets.AZURE_SUBSCRIPTION_ID }}" -var="tenant_id=${{ secrets.AZURE_TENANT_ID }}" -var="client_id=${{ secrets.AZURE_CLIENT_ID }}" -var="client_secret=${{ secrets.AZURE_CLIENT_SECRET }}"

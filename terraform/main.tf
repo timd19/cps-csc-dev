@@ -21,7 +21,7 @@ resource "azurerm_service_plan" "default" {
   os_type             = "Windows"
 
 }
-# please note
+# please note:
 # You may see custom (~4) is set to the app's runtime version, along with a warning says “Your app is pinned to an unsupported runtime version for ‘dotnet’. For better performance, we recommend using one of our supported versions instead: xxx.”. This is because azure function v4 runtime requires .NET6.0 but the default value is 4.0. You need to set the .netframeworkversion to v6.0 to support azure funtion v4.
 # If you would like to set the function runtime version, please use functions_extension_version property, terraform will set the FUNCTIONS_EXTENSION_VERSION in app_setting block, you don't need to specify the key in app_setting block.
 # If you would like to set the required number of failed requests for an instance to be deemed unhealthy and removed from the load balancer under health check feature, using health_check_eviction_time_in_min property under site_config block. Terraform will set the key WEBSITE_HEALTHCHECK_MAXPINGFAILURES
